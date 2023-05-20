@@ -68,3 +68,19 @@ new Swiper('.promotion .swiper-container', {
         nextEl: '.promotion .swiper-next'
     }
 })
+
+const promotionEl = document.querySelector('.promotion')
+const promotionToggleBtn = document.querySelector('.toggle-promotion')
+let isHidePromotion = false
+promotionToggleBtn.addEventListener('click', function () {
+    isHidePromotion = !isHidePromotion
+    if (isHidePromotion) {
+        // 숨김처리 - promotionEl에 hide class 추가
+        promotionEl.classList.add('hide')
+    } else {
+        // 보임처리 - promotionEl에 hide class 제거
+        promotionEl.classList.remove('hide')
+    }
+})
+
+
