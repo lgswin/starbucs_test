@@ -17,6 +17,7 @@ searchInputEl.addEventListener('blur', function () { // focus가 해제 되었�
 })
 
 const badgeEl = document.querySelector('header .badges')
+const toTopEl = document.querySelector('#to-top')
 
 window.addEventListener('scroll', _.throttle(function () {
     console.log(window.scrollY)
@@ -26,16 +27,29 @@ window.addEventListener('scroll', _.throttle(function () {
             opacity: 0,
             display: 'none'
         })
+        // to-top 버튼 보이기
+        gsap.to(toTopEl, .5, {
+            x: 0
+        })
     } else {
         // 배지 보이기
         gsap.to(badgeEl, .6, {
             opacity: 1, 
             display: 'block'
         })
+        // to-top 버튼 숨기기
+        gsap.to(toTopEl, .5, {
+            x: 100
+        })
     }
 }, 300)) // 300ms에 한번만 실행되도록
 // _.throttle(함수, 시간)
 
+toTopEl.addEventListener('click', function () {
+    gsap.to(window, .7, {
+        scrollTo: 0 // scrollto plugin 삽입함
+    })
+})
 
 const fadeEls = document.querySelectorAll('.visual .fade-in')
 fadeEls.forEach(function (fadeEl, index) {
